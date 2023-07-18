@@ -1,0 +1,47 @@
+function xticks = plot_O_plus_spectrogram_linear (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+                                     epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_cleaned_sum)
+                                 
+
+plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
+positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
+sub_handle6 = subplot('Position',positionVector2);
+
+% pcolor(repmat(epoch_cdf', nenergy, 1), energy(:,swp_ind+1,1),  flux_O);
+pcolor(repmat(epoch_d1', nenergy_d1, 1),...
+    (energy_d1(:,swp_ind_d1 + 1, 2, 5)*1.6e-19*2/(16*1.67e-27)).^0.5/1000,...
+    log10(squeeze(eflux_d1_cleaned_sum(:, 5,:))) );
+caxis(caxis_lims)
+shading flat
+datetick('x')
+xlim([epoch_d1(1) epoch_d1(end)])
+ylim([0 100])
+%set(gca, 'YScale', 'log', 'ycolor', 'black', 'ytick', [1 10 100 1000 10000]);
+set(gca, 'ycolor', 'black')%, 'ytick', [1 10 100 1000 10000]);
+ylabel({'O^+ velocity'; '[km/s]'}, 'color', 'black');
+grid on
+set(gca, 'layer', 'top')
+cbar_handle = colorbar;
+p6 = get(sub_handle6, 'position');
+p6(3) = plotLength; %p6(3)*1.06;
+set(sub_handle6, 'pos', p6)
+% cbar_tick = get(cbar_handle, 'ytick');
+% barlabels = cell(size(cbar_tick, 1), 1);
+% for j=1:size(cbar_tick, 2)
+%     barlabels{j} = ['10^{', num2str(cbar_tick(j)), '}'];
+% end
+% set(cbar_handle, 'xticklabel', barlabels)
+xlabel(cbar_handle, {'log10(eflux)', '[eV/(eV cm^2 s sr)]'}, 'FontSize', FontSize) %'FontWeight', 'bold')
+set(gca,'xticklabel',[])
+set(gca, 'FontSize', FontSize)
+%set(gca,'xtick',xticks)
+hold on
+limits = ylim;
+% colormap(gca, jet)
+load('newColormap.mat')
+colormap(gca, cmap);
+% plot([epoch(high_boundary_index) epoch(high_boundary_index)], [limits(1) limits(2)], 'color', 'white' ,'LineStyle','--')
+% plot([epoch(low_boundary_index) epoch(low_boundary_index)], [limits(1) limits(2)], 'color', 'white', 'LineStyle','--' )
+%---END--- plot 6 ---------------
+% caxis([ -1 6])
+% cbar_handle.Ticks = [-1, 0 ,1, 2, 3, 4, 5, 6];
+end
