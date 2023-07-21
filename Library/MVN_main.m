@@ -1,4 +1,4 @@
-function MVN_main(TimeStart, TimeEnd)
+function [f, sub_handles] = MVN_main(TimeStart, TimeEnd)
 
 %----!!! Please adjust this set of parameters as you wish !!!---
 caxis_lims = []; % set two values as in example "caxis_lims = [2 4]" or delete values to use automatic limits
@@ -8,6 +8,8 @@ plotsGap = 0.010;
 GraphicsSmoothing = 'on';
 subPlotAmount = 8;
 %---------------------------------------------------
+
+sub_handles = zeros(subPlotAmount, 1);
 
 altit_low = 0; %350; % [km]
 altit_high = Inf; %2600;  % [km]
@@ -233,7 +235,7 @@ plotNumber = 1;
 %---BEGIN---plot 1 ---------------
 %plotNumber = plotNumber + 1;
 %[~] = plot_B_components_and_magnitude (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
-[~] = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+[~, sub_handles(1)] = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
     epoch_d1_disp, nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum,...
     mf_epoch, Bx, By, Bz, LineWidth, Blx, Bly, Blz,x,y,z);
 xlim([TimeStart TimeEnd])
@@ -242,7 +244,7 @@ xlim([TimeStart TimeEnd])
 %---BEGIN---plot 2 ---------------
 plotNumber = plotNumber + 1;
 if(~isempty(epoch))
-    plot_velocities (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
+    [~, sub_handles(2)] = plot_velocities (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
         epoch,...
         v_p,  v_O,  v_O2);
     xlim([TimeStart TimeEnd])
@@ -252,7 +254,7 @@ end
 %---BEGIN---plot 3 ---------------
 plotNumber = plotNumber + 1;
 if(~isempty(epoch))
-    [~] = plot_densities_and_ratios (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
+    [~, sub_handles(3)] = plot_densities_and_ratios (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
         epoch,...
         n_p,  n_O,  n_O2, LineWidth);
     xlim([TimeStart TimeEnd])
@@ -262,7 +264,7 @@ end
 %---BEGIN---plot 4 ---------------
 plotNumber = plotNumber + 1;
 if(filename_svyspec ~= -1)
-    [~] = plot_electron_spectrogram(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+    [~, sub_handles(4)] = plot_electron_spectrogram(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_svyspec,energy, diff_en_fluxes);
     xlim([TimeStart TimeEnd])
 end
@@ -272,7 +274,7 @@ end
 %---BEGIN---plot 5 ---------------
 plotNumber = plotNumber + 1;
 if(~isempty(epoch))
-    [~] = plot_O2_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+    [~, sub_handles(5)] = plot_O2_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_d1_disp,nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum,...
         mf_epoch, Bx, By, Bz, n_O, n_O2);
     xlim([TimeStart TimeEnd])
@@ -283,7 +285,7 @@ end
 %---BEGIN---plot 6 ---------------
 plotNumber = plotNumber + 1;
 if(~isempty(epoch))
-    [~] = plot_O_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+    [~, sub_handles(6)] = plot_O_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_d1_disp,nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum);
     xlim([TimeStart TimeEnd])
 end
@@ -297,7 +299,7 @@ if(~isempty(epoch))
     % [~] = plot_proton_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
     %     epoch_d1_disp, nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum, altit, SZA,...
     %     mf_epoch, B);
-    [~] = plot_proton_spectrogram_withPressure (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+    [~, sub_handles(7)] = plot_proton_spectrogram_withPressure (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_d1_disp, nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum, altit, SZA,...
         n_p, v_x_p);
     xlim([TimeStart TimeEnd])
@@ -307,7 +309,7 @@ end
 %---BEGIN---plot 8 ---------------
 plotNumber = plotNumber + 1;
 if(length(filename_swia_mom) > 1 && length(filename_swia_spec) > 1)
-    [~] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+    [~, sub_handles(8)] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_swia_spec,energy_spectra_swia, spectra_diff_en_fluxes_swia,density_swia,velocity_mso_swia,choose_ind_swia);
     xlim([TimeStart TimeEnd])
 end

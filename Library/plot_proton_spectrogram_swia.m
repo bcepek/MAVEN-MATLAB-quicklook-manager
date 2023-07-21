@@ -1,10 +1,10 @@
-function xticks = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_swia,energy_spectra_swia, spectra_diff_en_fluxes_swia,density_swia,velocity_mso_swia,choose_ind_swia)
 [amu, anu, c, q, m_p, m_O, m_O2, m_CO2, Rm] = constants;
                                  
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-sub_handle6 = subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 
 
 pcolor(repmat(epoch_swia', 48, 1), repmat(energy_spectra_swia,1,length(epoch_swia)), log10(squeeze(spectra_diff_en_fluxes_swia')))
@@ -17,9 +17,9 @@ ylabel({'(1)'; 'SWIA E'; '[eV]'}, 'color', 'black');
 grid on
 set(gca, 'layer', 'top')
 cbar_handle = colorbar;
-p6 = get(sub_handle6, 'position');
+p6 = get(sub_handle, 'position');
 p6(3) = plotLength; %p6(3)*1.06;
-set(sub_handle6, 'pos', p6)
+set(sub_handle, 'pos', p6)
 
 xlabel(cbar_handle, {'log10(eflux)', '[eV/(eV cm^2 s sr)]'}, 'FontSize', FontSize) 
 set(gca,'xtick',xticks)

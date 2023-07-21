@@ -1,9 +1,9 @@
-function xticks = plot_electron_spectrogram(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_electron_spectrogram(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_svyspec,energy, diff_en_fluxes)
 
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-sub_handle6 = subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 
 
 pcolor(repmat(epoch_svyspec', 64, 1), repmat(energy,1,length(epoch_svyspec)), log10(squeeze(diff_en_fluxes')))
@@ -16,9 +16,9 @@ ylabel({'(5)'; 'SWEA E'; '[eV]'}, 'color', 'black');
 grid on
 set(gca, 'layer', 'top')
 cbar_handle = colorbar;
-p6 = get(sub_handle6, 'position');
+p6 = get(sub_handle, 'position');
 p6(3) = plotLength; %p6(3)*1.06;
-set(sub_handle6, 'pos', p6)
+set(sub_handle, 'pos', p6)
 
 xlabel(cbar_handle, {'log10(eflux)', '[eV/(eV cm^2 s sr)]'}, 'FontSize', FontSize) %'FontWeight', 'bold')
 set(gca,'xticklabel',[])

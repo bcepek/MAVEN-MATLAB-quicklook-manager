@@ -1,14 +1,10 @@
-function xticks = plot_densities_and_ratios (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
+function [xticks, sub_handle] = plot_densities_and_ratios (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
                                      epoch,...
                                      n_p,  n_O,  n_O2, LineWidth)
 
-
-
-
-
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 l_p = semilogy(epoch, n_p,'k','LineWidth',LineWidth);
 hold on
 l_o = semilogy(epoch, n_O,'LineWidth',LineWidth); %,'LineStyle','--');

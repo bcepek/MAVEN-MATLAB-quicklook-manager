@@ -1,4 +1,4 @@
-function xticks = plot_proton_spectrogram_withPressure (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_proton_spectrogram_withPressure (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_sum, altit, SZA,...
                                      n_p, v_x_p)
 
@@ -6,7 +6,7 @@ function xticks = plot_proton_spectrogram_withPressure (plotNumber, bottomGap, p
 
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-sub_handle7 = subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 % pcolor(repmat(epoch_c6', nenergy_c6, 1), energy_c6(:,swp_ind_c6+1,1),  eflux_p_c6);
 pcolor(repmat(epoch_d1', nenergy_d1, 1), energy_d1(:,swp_ind_d1 + 1,2,5),  log10(squeeze(eflux_d1_sum(:, 1, :))) );
 %caxis(caxis_lims)
@@ -18,9 +18,9 @@ ylabel({'(2)'; 'STATIC E'; 'H^+ [eV]'}, 'color', 'black');
 grid on
 set(gca, 'layer', 'top')
 
-p7 = get(sub_handle7, 'position');
+p7 = get(sub_handle, 'position');
 p7(3) = plotLength; %p6(3)*1.06;
-set(sub_handle7, 'pos', p7)
+set(sub_handle, 'pos', p7)
 plot_title = strcat('MAVEN STATIC', {' '}, datestr(epoch_d1(1),'yyyy-mm-dd'), {' '}, datestr(epoch_d1(1),'HH:MM:SS'),{' - '},datestr(epoch_d1(end),'HH:MM:SS'));
 %{
 plot_title = strcat(datestr(epoch_d1(1),'yyyy-mm-dd'), {' '}, datestr(epoch_d1(1),'HH:MM:SS'),{' - '},datestr(epoch_d1(end),'HH:MM:SS'),...

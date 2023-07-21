@@ -1,4 +1,4 @@
-function xticks = plot_velocities (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
+function [xticks, sub_handle] = plot_velocities (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks,...
                                      epoch,...
                                      v_p,  v_O,  v_O2)
 
@@ -6,7 +6,7 @@ function xticks = plot_velocities (plotNumber, bottomGap, plotHight, plotsGap, p
                                                                                                 
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-subplot('Position',positionVector);
+sub_handle = subplot('Position',positionVector);
 %*********************************************
 semilogy(epoch, v_p,'k','LineWidth',1.5);
 grid on

@@ -1,10 +1,10 @@
-function xticks = plot_O_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_O_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_cleaned_sum)
                                  
 
 plotBottomPosition=bottomGap+(plotHight+plotsGap)*(plotNumber-1);
 positionVector2=[plotLeftGap, plotBottomPosition, plotLength, plotHight];
-sub_handle6 = subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 
 % pcolor(repmat(epoch_cdf', nenergy, 1), energy(:,swp_ind+1,1),  flux_O);
 pcolor(repmat(epoch_d1', nenergy_d1, 1), (energy_d1(:,swp_ind_d1 + 1, 2, 5)),  log10(squeeze(eflux_d1_cleaned_sum(:, 5,:))) );
@@ -17,9 +17,9 @@ ylabel({'(3)'; 'STATIC E'; 'O^+ [eV]'}, 'color', 'black');
 grid on
 set(gca, 'layer', 'top')
 cbar_handle = colorbar;
-p6 = get(sub_handle6, 'position');
+p6 = get(sub_handle, 'position');
 p6(3) = plotLength; %p6(3)*1.06;
-set(sub_handle6, 'pos', p6)
+set(sub_handle, 'pos', p6)
 % cbar_tick = get(cbar_handle, 'ytick');
 % barlabels = cell(size(cbar_tick, 1), 1);
 % for j=1:size(cbar_tick, 2)

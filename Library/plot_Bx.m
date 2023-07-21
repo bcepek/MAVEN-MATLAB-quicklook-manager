@@ -1,10 +1,12 @@
-function xticks = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_cleaned_sum,...
                                      mf_epoch, Bx, By, Bz, LineWidth, Blx, Bly, Blz,x,y,z)
 
 plotBottomPosition = bottomGap + (plotHight+plotsGap) * (plotNumber-1);
 positionVector2 = [plotLeftGap, plotBottomPosition, plotLength, plotHight];
 sub_handle = subplot('Position',positionVector2);
+
+Bx = smooth(Bx, 1920);
 
 positive = Bx>0;
 Bx_pos = Bx;

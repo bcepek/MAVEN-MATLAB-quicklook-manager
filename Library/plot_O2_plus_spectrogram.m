@@ -1,11 +1,11 @@
-function xticks = plot_O2_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_O2_plus_spectrogram (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_cleaned_sum,...
                                      mf_epoch, Bx, By, Bz, n_O, n_O2)
 
 
 plotBottomPosition = bottomGap + (plotHight+plotsGap) * (plotNumber-1);
 positionVector2 = [plotLeftGap, plotBottomPosition, plotLength, plotHight];
-sub_handle5 = subplot('Position',positionVector2);
+sub_handle = subplot('Position',positionVector2);
 
 % set(sub_handle6, 'pos', p6)
 % pcolor(repmat(epoch_c6', nenergy_c6, 1), energy_c6(:,swp_ind_c6+1,1),  eflux_O2_c6);
