@@ -38,6 +38,6 @@ set(gca,'xtick',xticks)
 % plot([epoch(low_boundary_index) epoch(low_boundary_index)], [limits(1) limits(2)], 'color', 'black', 'LineStyle','--' )
 
 set(gca, 'gridalpha', 0.5, 'minorgridalpha', 0.5)
-l = legend ([l_p, l_o, l_o2],'p','O^+','O_2^+'); %, 'n_h/n_p');
+l = legend ([l_p, l_o, l_o2],'p','O^+','O_2^+', 'AutoUpdate','off');
 l.Location = 'west';
 end

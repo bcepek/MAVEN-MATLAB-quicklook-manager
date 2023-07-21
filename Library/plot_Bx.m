@@ -6,7 +6,7 @@ plotBottomPosition = bottomGap + (plotHight+plotsGap) * (plotNumber-1);
 positionVector2 = [plotLeftGap, plotBottomPosition, plotLength, plotHight];
 sub_handle = subplot('Position',positionVector2);
 
-Bx = smooth(Bx, 1920);
+%Bx = smooth(Bx, 1920);
 
 positive = Bx>0;
 Bx_pos = Bx;

@@ -17,7 +17,7 @@ semilogy(epoch, v_O2,'r','LineWidth',1.5) %,'LineStyle',':');
 datetick('x','HH:MM:SS');
 ylabel ({'(7)'; 'STATIC v'; '[km/s]'})
 % xlabel ('time')
-l = legend('p','O^+','O_2^+');
+l = legend('p','O^+','O_2^+', 'AutoUpdate','off');
 l.Location = 'west';
 set(gca,'xticklabel',[])
 if plotNumber == 1
