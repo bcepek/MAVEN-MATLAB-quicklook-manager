@@ -1,4 +1,4 @@
-function filename = find_mag_pc_file(cur_date)
+function filename = find_mag_file(cur_date)
 
 datefrom = datestr(cur_date, 'yyyymmdd');	% '2015-01-03';
 
