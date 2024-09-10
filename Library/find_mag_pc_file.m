@@ -2,7 +2,10 @@ function filename = find_mag_pc_file(cur_date)
 
 datefrom = datestr(cur_date, 'yyyymmdd');	% '2015-01-03';
 
-monthpath_MAG = '\\193.232.6.100\Data\Maven\data for MATLAB\MAG-pc';
+load('paths.mat', 'paths')
+monthpath_MAG = paths.mag_pc_1s;
+
+%monthpath_MAG = '\\193.232.6.100\Data\Maven\data for MATLAB\MAG-pc';
 
 month_filelist_MAG =  dir([monthpath_MAG '\' 'mvn_mag_l2_*' datefrom '*sts.mat']);
 

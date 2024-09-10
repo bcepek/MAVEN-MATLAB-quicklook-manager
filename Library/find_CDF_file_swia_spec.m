@@ -1,8 +1,9 @@
 function filename_d1 = find_CDF_file_swia_spec(cur_date)
 % finds STA CDF file for SWIA distribution function moments
 % filename;
-
-root = '/Users/sesh2112/data/Matlab_MAVEN/SWIA/onboard_svy_spec';
+load('paths.mat', 'paths')
+root = paths.swi_onboardsvyspec;
+%root = '/Users/sesh2112/data/Matlab_MAVEN/SWIA/onboard_svy_spec';
 
 % cur_date = datenum(Date);
 

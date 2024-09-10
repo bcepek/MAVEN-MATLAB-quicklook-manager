@@ -22,13 +22,15 @@ set(gca, 'FontSize', FontSize)
 grid on
 
 yyaxis right
-plot(epoch, n_p./(n_p + n_O + n_O2),'Color',[0 0.498 0], 'LineWidth', LineWidth)
+%plot(epoch, n_p./(n_p + n_O + n_O2),'Color',[0 0.498 0], 'LineWidth', LineWidth)
+plot(epoch, n_p./(n_p + n_O + n_O2),'Color',[0 0 0.8], 'LineWidth', LineWidth)
 ax = gca;
 ax.YScale = 'lin';
 ylim([0 1])
 % ylim([10^-2 10^3])
 % set(gca,'YTick',[ 10^-2 10^-1 10^0 10^1 10^2 10^3 ]);
-set(gca,'YColor',[0 0.498 0])
+%set(gca,'YColor',[0 0.498 0])
+set(gca,'YColor',[0 0 0.8])
 ylabel('n_p/(n_p + n_h)')
 xlim([epoch(1) epoch(end)])
 % plot_title = strcat(datestr(epoch(1),'yyyy-mm-dd'), {' '}, datestr(epoch(1),'HH:MM:SS'),{' - '}, datestr(epoch(end),'HH:MM:SS'),{' Altitude range: '},num2str(altit_low),{' - '},num2str(altit_high), ' km');

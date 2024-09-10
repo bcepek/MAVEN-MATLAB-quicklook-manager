@@ -1,8 +1,8 @@
 clear
-datefrom = '2020-12-01';
-dateto = '2020-12-31';
-writepath = '/Users/sesh2112/data/Matlab MAVEN/pre-calculated/MAG_SS';
-root = '/Users/sesh2112/data/Matlab_MAVEN/MAG';
+datefrom = '2022-12-19';
+dateto = '2022-12-19';
+writepath = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/MAG_SS';
+root = '/Users/sesh2112/data/Matlab_MAVEN/MAG/SS';
 
 from = datenum(datefrom);
 to = datenum(dateto);

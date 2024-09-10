@@ -38,6 +38,8 @@ v_z_bulk_u = (v_z_p_u.*n_p_u + v_z_O_u.*n_O_u*16 + v_z_O2_u.*n_O_u*32 )./(n_p_u 
 
 E_upstr = -cross([v_x_bulk_u, v_y_bulk_u, v_z_bulk_u],...
     [Bx_upstr, By_upstr, Bz_upstr]);
+% E_upstr = -cross([-ones(size(Bx_upstr)),zeros(size(Bx_upstr)),zeros(size(Bx_upstr))],...
+%     [Bx_upstr, By_upstr, Bz_upstr]);
 E_upstr = mean(E_upstr(~isnan(E_upstr(:,1)),:), 1);
 E_upstr = E_upstr./norm(E_upstr);
 

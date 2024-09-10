@@ -24,6 +24,6 @@ B = sqrt(Bx.^2 + By.^2 + Bz.^2); %#ok<NASGU>
 pos_sc_mso = mf_data(:, [12 13 14]); %#ok<NASGU>
 % new_filename = strcat('mf_', datestr(mf_epoch(1),'yyyy-mm-dd'),'.mat');
 % save(new_filename,'mf_epoch','Bx','By','Bz','B')
-save([writepath, '/', filename(47:end),'.mat'],'mf_epoch','Bx','By','Bz','B', 'pos_sc_mso')
+save([writepath, '/', filename(50:end),'.mat'],'mf_epoch','Bx','By','Bz','B', 'pos_sc_mso')
 % save([writepath, '\', filename(57:end), '_H.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp')
 end

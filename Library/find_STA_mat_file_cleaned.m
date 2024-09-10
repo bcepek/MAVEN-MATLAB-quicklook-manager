@@ -2,7 +2,9 @@ function [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(date)
 % find cleaned data
 
 date = datestr(date, 'yyyymmdd');
-root_STATIC = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/STATIC_moments';
+load('paths.mat', 'paths')
+root_STATIC = paths.sta_moments;
+%root_STATIC = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/STATIC_moments';
 %root_STATIC = 'E:\MatLab';
 
 

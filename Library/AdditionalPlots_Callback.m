@@ -16,6 +16,14 @@ switch str{val}
         [x1, ~] = ginput(n);
         time_stamp(x1)
 
+    case 'Magnetic Curl (0)'
+        magnetic_curl(epoch_d1_disp(1), epoch_d1_disp(end), windowpos)
+
+    case 'Magnetic Curl new coord (2)'
+        n = 2;
+        [x1, ~] = ginput(n);
+        magnetic_curl_new_coord(x1, epoch_d1_disp(1), epoch_d1_disp(end), windowpos)
+
     case 'Ion velocity MSO (0)'
         plot_ion_velocity_MSO(epoch_d1_disp, products_O, products_H, products_O2, windowpos);
 

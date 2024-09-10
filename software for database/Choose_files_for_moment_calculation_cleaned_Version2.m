@@ -1,6 +1,6 @@
 clear
-datefrom = '2020-11-01';
-dateto   = '2020-12-31';
+datefrom = '2022-12-19';
+dateto   = '2022-12-19';
 writepath = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/STATIC_moments';
 root = '/Users/sesh2112/data/Matlab_MAVEN/STATIC_d1';
 

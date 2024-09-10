@@ -1,4 +1,4 @@
-function xticks = plot_B_components_and_magnitude (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+function [xticks, sub_handle] = plot_B_components_and_magnitude (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
                                      epoch_d1,nenergy_d1, energy_d1, swp_ind_d1, eflux_d1_cleaned_sum,...
                                      mf_epoch, Bx, By, Bz, LineWidth, Blx, Bly, Blz,x,y,z)
 
@@ -27,7 +27,8 @@ set(gca,'xtick',xticks)
 a = plot(mf_epoch,Bx, 'r', 'LineWidth', LineWidth);
 hold on 
 b = plot(mf_epoch, By,  'LineWidth', LineWidth );
-c = plot(mf_epoch, Bz,  'color', [0 0.498 0], 'LineWidth', LineWidth );
+%c = plot(mf_epoch, Bz,  'color', [0 0.498 0], 'LineWidth', LineWidth );
+c = plot(mf_epoch, Bz,  'color', [0 0 0.8], 'LineWidth', LineWidth );
 d = plot(mf_epoch, sqrt(Bx.^2 + By.^2 + Bz.^2),  'k', 'LineWidth', LineWidth);
 
 

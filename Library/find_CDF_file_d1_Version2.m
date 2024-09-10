@@ -5,7 +5,10 @@ function filename_d1 = find_CDF_file_d1_Version2(cur_date)
 % Ermakov;
 % last modified June 13, 2018;
 
-root = '/Users/sesh2112/data/Matlab_MAVEN/STATIC_d1';
+load('paths.mat', 'paths');
+root = paths.sta_d1;
+
+%root = '/Users/sesh2112/data/Matlab_MAVEN/STATIC_d1';
 
 cur_year = datestr(cur_date, 'yyyy');
 cur_month = datestr(cur_date, 'mm');

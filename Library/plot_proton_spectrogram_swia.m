@@ -17,11 +17,18 @@ ylabel({'(1)'; 'SWIA E'; '[eV]'}, 'color', 'black');
 grid on
 set(gca, 'layer', 'top')
 cbar_handle = colorbar;
+
+ylabels = get(cbar_handle, 'ticklabels');
+for i=1:length(ylabels)
+    ylabels{i} = ['10^{' num2str(ylabels{i}) '}'];
+end
+set(cbar_handle, 'ticklabels', ylabels, 'fontsize', FontSize)
+
 p6 = get(sub_handle, 'position');
 p6(3) = plotLength; %p6(3)*1.06;
 set(sub_handle, 'pos', p6)
 
-xlabel(cbar_handle, {'log10(eflux)', '[eV/(eV cm^2 s sr)]'}, 'FontSize', FontSize) 
+xlabel(cbar_handle, {'eflux', '[eV/(eV cm^2 s sr)]'}, 'FontSize', FontSize) 
 set(gca,'xtick',xticks)
 set(gca,'xticklabel',[])
 set(gca, 'FontSize', FontSize)

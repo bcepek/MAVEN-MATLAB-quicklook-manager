@@ -21,13 +21,17 @@ function minvar_MSE(t,x,y,z)
 % timefrom = datenum('2015-07-17 11:08:59');
 % timeto = datenum('2015-07-17 11:09:23');
 
-readpath = '\\193.232.6.100\Data\Maven\data for MATLAB\MAG\';
-filename = dir([readpath 'mvn_mag_l2_*' datestr(t(3), 'yyyymmdd') '*.sts.mat']);
-if length(filename)<1
-    disp('MAG file not found')
-    return
-end
-load([readpath filename.name])
+% readpath = '\\193.232.6.100\Data\Maven\data for MATLAB\MAG\';
+% filename = dir([readpath 'mvn_mag_l2_*' datestr(t(3), 'yyyymmdd') '*.sts.mat']);
+% if length(filename)<1
+%     disp('MAG file not found')
+%     return
+% end
+% load([readpath filename.name])
+
+filename = find_mag_file(t(1));
+load(filename);
+
 B = [Bx, By, Bz];
 epoch = mf_epoch;
 

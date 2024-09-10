@@ -2,7 +2,9 @@ function filename_svyspec = find_svyspec(cur_date)
 
 %root = '\\193.232.6.100\Data\Maven\Static\d1_32e4d16a8m_Version2';
 %root = '\\193.232.6.100\общие\Константин\Data\MAVEN\SWEA';
-root = '/Users/sesh2112/data/Matlab_MAVEN/SWEA';
+load('paths.mat', 'paths')
+root = paths.swe_svyspec;
+%root = '/Users/sesh2112/data/Matlab_MAVEN/SWEA/svyspec';
 cur_year = datestr(cur_date, 'yyyy');
 cur_month = datestr(cur_date, 'mm');
 cur_day = datestr(cur_date, 'dd');

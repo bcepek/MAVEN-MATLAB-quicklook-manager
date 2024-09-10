@@ -122,13 +122,17 @@ end
 [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(TimeStart);
 
 filename_mag = find_mag_file(TimeStart);
-products_mag = load (filename_mag);
-
-
-if isempty(products_H) || isempty(products_O) || isempty(products_O2) || isempty(products_mag)
-    disp('There is not some product file')
-    return
+if(filename_mag~=-1)
+    products_mag = load (filename_mag);
+else
+    products_mag = [];
 end
+
+
+% if isempty(products_H) || isempty(products_O) || isempty(products_O2) || isempty(products_mag)
+%     disp('There is not some product file')
+%     return
+% end
 
 
 [x, y, z, ...
@@ -234,11 +238,13 @@ plotNumber = 1;
 
 %---BEGIN---plot 1 ---------------
 %plotNumber = plotNumber + 1;
-%[~] = plot_B_components_and_magnitude (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
-[~, sub_handles(1)] = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
-    epoch_d1_disp, nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum,...
-    mf_epoch, Bx, By, Bz, LineWidth, Blx, Bly, Blz,x,y,z);
-xlim([TimeStart TimeEnd])
+%[~, sub_handles(1)] = plot_Bx (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+if(~isempty(mf_epoch))
+    [~, sub_handles(1)] = plot_B_components_and_magnitude (plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
+        epoch_d1_disp, nenergy_d1, energy_d1, swp_ind_d1_disp, eflux_d1_cleaned_sum,...
+        mf_epoch, Bx, By, Bz, LineWidth, Blx, Bly, Blz,x,y,z);
+    xlim([TimeStart TimeEnd])
+end
 %----END----plot 1 ---------------
 
 %---BEGIN---plot 2 ---------------
@@ -365,6 +371,7 @@ windowpos = get(f, 'position');
 
 cButton    = uicontrol('Style','popupmenu', 'String',...
     {'Zoom on time axis (2)', 'Time stamp (1)',...
+    'Magnetic Curl (0)' 'Magnetic Curl new coord (2)',...
     'Ion velocity MSO (0)', 'n-T diagram (2)', 'Box (4)','Energy Spectrum AVG 5 WINDOW (1)',...
     'Energy Spectra Set (2)', 'Minimum Variance MSE (4)', 'Minimum Variance (2)', 'Orbit and Vectors (2)', 'Orbit and Vectors MSE (4)',...
     '3D Distribution Function H (low E) (2)',...

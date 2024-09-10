@@ -57,15 +57,26 @@ Blz = products_O.magf(( epoch >= TimeStart & epoch <= TimeEnd & altit >= altit_l
 Bl = sqrt(Blx.^2 + Bly.^2 + Blz.^2);
 
 %***************  high temporal resolution from MAG data *******
-mf_epoch = products_mag.mf_epoch;
-Bx = products_mag.Bx(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
-By = products_mag.By(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
-Bz = products_mag.Bz(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
-x_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),1)/Rm;
-y_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),2)/Rm;
-z_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),3)/Rm;
-B = sqrt(Bx.^2 + By.^2 + Bz.^2);
-mf_epoch = mf_epoch( mf_epoch >= TimeStart & mf_epoch <= TimeEnd);
+if(~isempty(products_mag))
+    mf_epoch = products_mag.mf_epoch;
+    Bx = products_mag.Bx(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
+    By = products_mag.By(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
+    Bz = products_mag.Bz(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd));
+    x_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),1)/Rm;
+    y_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),2)/Rm;
+    z_mag = products_mag.pos_sc_mso(( mf_epoch >= TimeStart & mf_epoch <= TimeEnd),3)/Rm;
+    B = sqrt(Bx.^2 + By.^2 + Bz.^2);
+    mf_epoch = mf_epoch( mf_epoch >= TimeStart & mf_epoch <= TimeEnd);
+else
+    mf_epoch = [];
+    Bx = [];
+    By = [];
+    Bz = [];
+    x_mag = [];
+    y_mag = [];
+    z_mag = [];
+    B = [];
+end
 
 
 altit_tmp = altit( epoch >= TimeStart & epoch <= TimeEnd & altit >= altit_low & altit < altit_high);

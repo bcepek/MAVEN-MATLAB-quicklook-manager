@@ -1,0 +1,31 @@
+function filename_svyspec = find_lpw_we12(cur_date) 
+
+load('paths.mat', 'paths')
+root = paths.lpw_we12;
+%root = '/Users/sesh2112/data/Matlab_MAVEN/LPW/we12';
+cur_year = datestr(cur_date, 'yyyy');
+cur_month = datestr(cur_date, 'mm');
+cur_day = datestr(cur_date, 'dd');
+
+monthpath = [root '/' cur_year '/' cur_month '/'];
+month_filelist = dir([monthpath, '*.cdf']);
+
+if(isempty(month_filelist))
+    isfound = false;
+    disp(['lpw we12 data for ' datestr(cur_date) ' not found'])
+    filename_svyspec = -1;
+end
+
+for i = 1:length(month_filelist)
+    if(all(month_filelist(i).name(23:24) == cur_day))
+        filename_svyspec = [monthpath month_filelist(i).name];
+        isfound = true;
+        break
+    elseif i == length(month_filelist)
+        isfound = false;
+        disp([datestr(cur_date) ' not found'])
+        filename_svyspec = -1;
+    end
+end
+
+end

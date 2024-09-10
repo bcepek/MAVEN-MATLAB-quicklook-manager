@@ -21,7 +21,7 @@ c = colorbar;
 c.Label.String = 'Amplitude^2';
 c.FontSize = 14; c.FontWeight = 'bold';
 ylabel({'Frequency','Hz'},'fontsize',14,'fontweight','bold')
-datetick('x','HH:MM:SS');
+datetick('x','HH:MM');
 set(gca, 'YScale', 'log', 'ycolor', 'black');
 xlim([mfepoch(1) mfepoch(end)])
 ylim([min(f) max(f)])

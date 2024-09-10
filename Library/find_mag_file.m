@@ -2,7 +2,9 @@ function filename = find_mag_file(cur_date)
 
 datefrom = datestr(cur_date, 'yyyymmdd');	% '2015-01-03';
 
-monthpath_MAG = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/MAG_SS';
+load('paths.mat', 'paths')
+monthpath_MAG = paths.mag_ss;
+%monthpath_MAG = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/MAG_SS';
 
 month_filelist_MAG =  dir([monthpath_MAG '/' 'mvn_mag_l2_*' datefrom '*sts.mat']);
 

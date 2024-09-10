@@ -49,6 +49,9 @@ att_ind = data{18};
 quality_flag = data{19};
 valid = data{20};
 
+% eflux = load("eflux_mat.mat");
+% eflux = eflux.eflux_new;
+
 disp(['cdf ' filename ' read successfully'])
 
 %---BEGIN---clean O+ mass channel----------
