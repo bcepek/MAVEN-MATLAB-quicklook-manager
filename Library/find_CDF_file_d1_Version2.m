@@ -17,6 +17,10 @@ cur_day = datestr(cur_date, 'dd');
 monthpath = [root '/' cur_year '/' cur_month '/'];
 month_filelist = dir([monthpath, '*.cdf']);
 
+if isempty(month_filelist)
+    filename_d1 = -1;
+end
+
 for i = 1:length(month_filelist)
     if(all(month_filelist(i).name(32:33) == cur_day))
         filename_d1 = [monthpath month_filelist(i).name];

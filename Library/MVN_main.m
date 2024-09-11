@@ -20,6 +20,12 @@ altit_high = Inf; %2600;  % [km]
 
 
 filename_d1 = find_CDF_file_d1_Version2(TimeStart);
+if filename_d1 == -1
+    disp("mvn_sta_d1 file is not found on local machine. Trying to download it from LASP SDC...")
+    filename_d1 = download_sta_d1(TimeStart);
+    disp("mvn_sta_d1 downloaded")
+end
+
 global epoch_d1 eflux_d1 pos_sc_mso_d1 energy_d1 nenergy_d1 denergy_d1 theta_d1 phi_d1 domega_d1 nbins_d1...
     swp_ind_d1 mass_arr_d1 nanode_d1 ndef_d1 quat_mso_d1 magf_d1...
     sc_pot_d1 att_ind_d1 quality_flag_d1
