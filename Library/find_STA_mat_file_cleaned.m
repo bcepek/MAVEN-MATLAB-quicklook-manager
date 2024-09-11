@@ -42,7 +42,7 @@ for i = 1:length(month_filelist_STA_H)
         products_H = load (filename);
         break
     elseif i == length(month_filelist_STA_H)
-        disp([date ' for STA H is not found'])
+%        disp([date ' for STA H is not found'])
         products_H = [];
     end
 end

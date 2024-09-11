@@ -126,6 +126,12 @@ end
 %}
 
 [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(TimeStart);
+if(any([isempty(products_H), isempty(products_O), isempty(products_O2)]))
+    disp("at least one of pre-calculated moments of mvn_sta_d1 is missing. Pre-calculating now...")
+    calc_sta_d1_moments_cleaned(filename_d1)
+    disp("mvn_sta_d1 moments pre-calculated")
+    [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(TimeStart);
+end
 
 filename_mag = find_mag_file(TimeStart);
 if(filename_mag~=-1)
