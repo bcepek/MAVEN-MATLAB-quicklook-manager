@@ -197,6 +197,11 @@ end
 %% --- SWIA ENERGY-TIME SPECTROGRAM AND PRESSURE --- %%
 %Root for SWIA moments data
 filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
+if filename_swia_mom==-1
+    disp("mvn_swi_svymom not found. Trying to download from LASP SDC...")
+    download_swi_svymom(TimeStart);
+    filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
+end
 % Read moments variables
 if(length(filename_swia_mom) > 1)
     [epoch_swia,time_met_swia,time_unix_swia,atten_state_swia,telem_mode_swia,quality_flag_swia,...

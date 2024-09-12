@@ -26,7 +26,6 @@ month_filelist = dir([monthpath, '*.cdf']);
 
 if(length(month_filelist) == 0)
     isfound = false;
-    disp([datestr(cur_date) ' not found'])
    filename_d1 = -1;
 end
 
@@ -37,7 +36,6 @@ for i = 1:length(month_filelist)
         break
     elseif i == length(month_filelist)
         isfound = false;
-        disp([datestr(cur_date) ' not found'])
         filename_d1 = -1;
     end
 end
