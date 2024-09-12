@@ -214,6 +214,11 @@ end
 
 % Root for SWIA spectra data
 filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+if filename_swia_spec==-1
+    disp("mvn_swi_svyspec not found. Trying to download from LASP SDC...")
+    download_swi_svyspec(TimeStart);
+    filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+end
 
 % Read moments variables
 if(length(filename_swia_spec) > 1)
