@@ -184,7 +184,12 @@ Ez = v_y_bulk.*Blx - v_x_bulk.*Bly;
 
 
 %% *************** ELECTRON DISTRIBUTION FUNCTIONS ******************%
-filename_svyspec = find_svyspec(TimeStart) ;
+filename_svyspec = find_svyspec(TimeStart);
+if filename_svyspec==-1
+    disp("mvn_swe_svyspec not found. Trying to download from LASP SDC...")
+    download_swe_svyspec(TimeStart);
+    filename_svyspec = find_svyspec(TimeStart);
+end
 if(filename_svyspec ~= -1)
     [epoch_svyspec,num_accum,counts,diff_en_fluxes,weight_factor,...
         geom_factor, g_engy, de_over_e, accum_time, energy,num_spec] = read_variables_svyspec(filename_svyspec, TimeStart, TimeEnd);
