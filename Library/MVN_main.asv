@@ -24,9 +24,6 @@ if filename_d1 == -1
     disp("mvn_sta_d1 file is not found on local machine. Trying to download it from LASP SDC...")
     filename_d1 = download_sta_d1(TimeStart);
     disp("mvn_sta_d1 downloaded")
-    disp("pre-calculating moments...")
-    calc_sta_d1_moments_cleaned(filename_d1)
-    disp("moments pre-calculated")
 end
 
 global epoch_d1 eflux_d1 pos_sc_mso_d1 energy_d1 nenergy_d1 denergy_d1 theta_d1 phi_d1 domega_d1 nbins_d1...
@@ -129,9 +126,21 @@ end
 %}
 
 [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(TimeStart);
-if(any([isem]))
+if(any([isempty(products_H), isempty(products_O), isempty(products_O2)]))
+    disp("at least one of pre-calculated moments of mvn_sta_d1 is missing. Pre-calculating now...")
+    calc_sta_d1_moments_cleaned(filename_d1)
+    disp("mvn_sta_d1 moments pre-calculated")
+    [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(TimeStart);
+end
 
 filename_mag = find_mag_file(TimeStart);
+if(filename_mag == -1)
+    disp("mag mat file not found. trying to download sts file from LASP SDC...")
+    %download here !!!!!!!!!!!!!!!!!
+    disp("mag sts file downloaded. Converting to mat...")
+    %convert to mat here !!!!!!!!!!!!!!!!!!
+    filename_mag = find_mag_file(TimeStart);
+end
 if(filename_mag~=-1)
     products_mag = load (filename_mag);
 else
