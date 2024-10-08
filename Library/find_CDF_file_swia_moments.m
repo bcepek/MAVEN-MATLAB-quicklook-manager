@@ -3,7 +3,7 @@ function filename_d1 = find_CDF_file_swia_moments(cur_date)
 % finds STA CDF file for SWIA distribution function moments
 % filename;
 
-load('paths.mat', 'paths')
+load('paths.mat', 'paths', 'slash')
 root = paths.swi_onboardsvymom;
 %root = '/Users/sesh2112/data/Matlab_MAVEN/SWIA/onboard_svy_mom';
 
@@ -21,7 +21,7 @@ cur_month = datestr(cur_date, 'mm');
 %     cur_day = ['0' cur_day];
 %end
 cur_day = datestr(cur_date, 'dd');
-monthpath = [root '/' cur_year '/' cur_month '/'];
+monthpath = [root slash cur_year slash cur_month slash];
 month_filelist = dir([monthpath, '*.cdf']);
 
 if(length(month_filelist) == 0)

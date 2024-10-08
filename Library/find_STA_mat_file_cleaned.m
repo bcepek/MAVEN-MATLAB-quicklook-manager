@@ -2,7 +2,7 @@ function [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(date)
 % find cleaned data
 
 date = datestr(date, 'yyyymmdd');
-load('paths.mat', 'paths')
+load('paths.mat', 'paths', 'slash')
 root_STATIC = paths.sta_moments;
 %root_STATIC = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/STATIC_moments';
 %root_STATIC = 'E:\MatLab';
@@ -10,9 +10,9 @@ root_STATIC = paths.sta_moments;
 
 
 monthpath_STA = root_STATIC;  %[root '\' cur_year '\' cur_month '\'];
-month_filelist_STA_H =  dir([monthpath_STA '/' '*H.mat']);
-month_filelist_STA_O =  dir([monthpath_STA '/' '*O.mat']);
-month_filelist_STA_O2 =  dir([monthpath_STA '/' '*O2.mat']);
+month_filelist_STA_H =  dir([monthpath_STA slash '*H.mat']);
+month_filelist_STA_O =  dir([monthpath_STA slash '*O.mat']);
+month_filelist_STA_O2 =  dir([monthpath_STA slash '*O2.mat']);
 
 
 %{
@@ -38,7 +38,7 @@ for i = 1:length(month_filelist_STA_H)
         continue
     end
     if(all(month_filelist_STA_H(i).name(26:33) == date)) % for H data
-        filename = [monthpath_STA '/' month_filelist_STA_H(i).name];
+        filename = [monthpath_STA slash month_filelist_STA_H(i).name];
         products_H = load (filename);
         break
     elseif i == length(month_filelist_STA_H)
@@ -52,7 +52,7 @@ for i = 1:length(month_filelist_STA_O)
         continue
     end
     if(all(month_filelist_STA_O(i).name(26:33) == date)) % for O data
-        filename = [monthpath_STA '/' month_filelist_STA_O(i).name];
+        filename = [monthpath_STA slash month_filelist_STA_O(i).name];
         products_O = load (filename);
         break
     elseif i == length(month_filelist_STA_O)
@@ -68,7 +68,7 @@ for i = 1:length(month_filelist_STA_O2)
         continue
     end
     if(all(month_filelist_STA_O2(i).name(26:33) == date)) % for O2 data
-        filename = [monthpath_STA '/' month_filelist_STA_O2(i).name];
+        filename = [monthpath_STA slash month_filelist_STA_O2(i).name];
         products_O2 = load (filename);
         break
     elseif i == length(month_filelist_STA_O2)

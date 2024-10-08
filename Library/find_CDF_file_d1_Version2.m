@@ -5,7 +5,7 @@ function filename_d1 = find_CDF_file_d1_Version2(cur_date)
 % Ermakov;
 % last modified June 13, 2018;
 
-load('paths.mat', 'paths');
+load('paths.mat', 'paths', 'slash');
 root = paths.sta_d1;
 
 %root = '/Users/sesh2112/data/Matlab_MAVEN/STATIC_d1';
@@ -14,7 +14,7 @@ cur_year = datestr(cur_date, 'yyyy');
 cur_month = datestr(cur_date, 'mm');
 cur_day = datestr(cur_date, 'dd');
 
-monthpath = [root '/' cur_year '/' cur_month '/'];
+monthpath = [root slash cur_year slash cur_month slash];
 month_filelist = dir([monthpath, '*.cdf']);
 
 if isempty(month_filelist)
