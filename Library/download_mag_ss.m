@@ -12,8 +12,8 @@ if(length(mvn_day)<2)
     mvn_day = ['0' mvn_day];
 end
 
-load("paths.mat", 'paths')
-download_path = [paths.mag_ss_sts '/' mvn_year '/' mvn_month '/'];
+load("paths.mat", 'paths', 'slash')
+download_path = [paths.mag_ss_sts slash mvn_year slash mvn_month slash];
 if ~exist(download_path, 'dir')
     mkdir(download_path)
 end

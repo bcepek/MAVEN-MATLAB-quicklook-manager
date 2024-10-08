@@ -3,7 +3,7 @@ function calc_sta_d1_moments_cleaned(filename)
 % clc
 % clear
 
-load('paths.mat', 'paths');
+load('paths.mat', 'paths', 'slash');
 writepath = paths.sta_moments;
 
 mass = [1 16 32];
@@ -232,15 +232,20 @@ for mass_id = 1:length(mass)
     %save('lowE', 'data')
     concentration = concentration/1e6;
     v_mso = v_mso/1e3;
+
+    if ~exist([writepath, slash], 'dir')
+        mkdir([writepath, slash])
+    end
+
     switch mass_id
         case 1
-            save([writepath, '/', filename(53:end), '_H.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
+            save([writepath, slash, filename(end-44:end), '_H.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
                 'sc_pot', 'att_ind', 'quality_flag', 'valid')
         case 2
-            save([writepath, '/', filename(53:end), '_O.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
+            save([writepath, slash, filename(end-44:end), '_O.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
                 'sc_pot', 'att_ind', 'quality_flag', 'valid')
         case 3
-            save([writepath, '/', filename(53:end), '_O2.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
+            save([writepath, slash, filename(end-44:end), '_O2.mat'], 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp',...
                 'sc_pot', 'att_ind', 'quality_flag', 'valid')
             %         case 4
             %             save('060115_CO2', 'epoch', 'magf', 'pos_sc_mso', 'concentration', 'v_mso', 'temp', 'Tpar', 'Tperp')

@@ -1,6 +1,10 @@
 function [products_H, products_O, products_O2] = find_STA_mat_file_cleaned(date)
 % find cleaned data
 
+products_H = [];
+products_O = [];
+products_O2 = [];
+
 date = datestr(date, 'yyyymmdd');
 load('paths.mat', 'paths', 'slash')
 root_STATIC = paths.sta_moments;

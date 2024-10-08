@@ -1,6 +1,6 @@
 function mag_sts2mat(filename)
 
-load("paths.mat", "paths");
+load("paths.mat", "paths", 'slash');
 writepath = paths.mag_ss_mat;
 
 fileID=fopen(filename,'r');
@@ -26,5 +26,10 @@ B = sqrt(Bx.^2 + By.^2 + Bz.^2); %#ok<NASGU>
 pos_sc_mso = mf_data(:, [12 13 14]); %#ok<NASGU>
 % new_filename = strcat('mf_', datestr(mf_epoch(1),'yyyy-mm-dd'),'.mat');
 % save(new_filename,'mf_epoch','Bx','By','Bz','B')
-save([writepath, '/', filename(end-40:end),'.mat'],'mf_epoch','Bx','By','Bz','B', 'pos_sc_mso')
+
+if ~exist(writepath, 'dir')
+    mkdir(writepath)
+end
+
+save([writepath, slash, filename(end-40:end),'.mat'],'mf_epoch','Bx','By','Bz','B', 'pos_sc_mso')
 end
