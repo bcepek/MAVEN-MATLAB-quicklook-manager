@@ -62,8 +62,8 @@
 % TimeStart = datenum('2022-12-19 21:48:00', 'yyyy-mm-dd HH:MM:SS');
 % TimeEnd = datenum('2022-12-19 21:58:00', 'yyyy-mm-dd HH:MM:SS');
 
-TimeStart = datenum('2021-11-08 11:30:00', 'yyyy-mm-dd HH:MM:SS');  %no mag
-TimeEnd = datenum('2021-11-08 11:55:00', 'yyyy-mm-dd HH:MM:SS');
+TimeStart = datenum('2021-12-04 19:15:00', 'yyyy-mm-dd HH:MM:SS');
+TimeEnd = datenum('2021-12-04 19:45:00', 'yyyy-mm-dd HH:MM:SS');
 
 % TimeStart = datenum('2015-07-19 19:07:00', 'yyyy-mm-dd HH:MM:SS');
 % TimeEnd = datenum('2015-07-19 19:33:00', 'yyyy-mm-dd HH:MM:SS');

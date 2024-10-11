@@ -20,6 +20,10 @@ web_page = webread(url);
 
 pattern = ['mvn_swe_l2_svyspec_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
 fname_ind = strfind(web_page, pattern);
+if isempty(fname_ind)
+    filename = -1;
+    return
+end
 fname = web_page(fname_ind(1):fname_ind(1)+38);
 websave([download_path, fname], [url, fname]);
 
