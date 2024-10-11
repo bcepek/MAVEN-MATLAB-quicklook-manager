@@ -201,11 +201,11 @@ end
 filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
 if filename_swia_mom==-1
     disp("mvn_swi_svymom not found. Trying to download from LASP SDC...")
-    download_swi_svymom(TimeStart);
-    filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
+    filename_swia_mom = download_swi_svymom(TimeStart);
+    %filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
 end
 % Read moments variables
-if(length(filename_swia_mom) > 1)
+if(filename_swia_mom ~= -1)
     [epoch_swia,time_met_swia,time_unix_swia,atten_state_swia,telem_mode_swia,quality_flag_swia,...
         decom_flag_swia,density_swia,pressure_swia,velcoity_swia,velocity_mso_swia,...
         temperature_swia,temperature_mso_swia,pindex_swia,vindex_swia,tindex_swia,p_label_swia,...
@@ -352,7 +352,7 @@ end
 
 %---BEGIN---plot 8 ---------------
 plotNumber = plotNumber + 1;
-if(length(filename_swia_mom) > 1 && filename_swia_spec ~= -1)
+if(filename_swia_mom ~= -1 && filename_swia_spec ~= -1)
     [~, sub_handles(8)] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_swia_spec,energy_spectra_swia, spectra_diff_en_fluxes_swia,density_swia,velocity_mso_swia,choose_ind_swia);
     xlim([TimeStart TimeEnd])
