@@ -218,12 +218,14 @@ end
 filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
 if filename_swia_spec==-1
     disp("mvn_swi_svyspec not found. Trying to download from LASP SDC...")
-    download_swi_svyspec(TimeStart);
-    filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+    filename_swia_spec = download_swi_svyspec(TimeStart);
+    if(filename_swia_spec ~= -1)
+        filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+    end
 end
 
 % Read moments variables
-if(length(filename_swia_spec) > 1)
+if(filename_swia_spec ~= -1)
     [epoch_swia_spec, num_accum_swia, decom_flag_swia, spectra_counts_swia,...
         spectra_diff_en_fluxes_swia, geom_factor_swia, de_over_e_spectra_swia,...
         accum_time_spectra_swia, energy_spectra_swia, num_spec_swia] = read_variables_from_cdf_swia_spec(filename_swia_spec);
@@ -350,7 +352,7 @@ end
 
 %---BEGIN---plot 8 ---------------
 plotNumber = plotNumber + 1;
-if(length(filename_swia_mom) > 1 && length(filename_swia_spec) > 1)
+if(length(filename_swia_mom) > 1 && filename_swia_spec ~= -1)
     [~, sub_handles(8)] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_swia_spec,energy_spectra_swia, spectra_diff_en_fluxes_swia,density_swia,velocity_mso_swia,choose_ind_swia);
     xlim([TimeStart TimeEnd])
