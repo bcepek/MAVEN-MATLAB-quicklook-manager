@@ -47,8 +47,8 @@
 % TimeStart = datenum('2021-12-07 12:20:00', 'yyyy-mm-dd HH:MM:SS');
 % TimeEnd = datenum('2021-12-07 12:50:00', 'yyyy-mm-dd HH:MM:SS');
 
-TimeStart = datenum('2018-12-14 06:43:00', 'yyyy-mm-dd HH:MM:SS');
-TimeEnd = datenum('2018-12-14 08:53:00', 'yyyy-mm-dd HH:MM:SS');
+% TimeStart = datenum('2018-12-14 06:43:00', 'yyyy-mm-dd HH:MM:SS');
+% TimeEnd = datenum('2018-12-14 08:53:00', 'yyyy-mm-dd HH:MM:SS');
 
 % TimeStart = datenum('2021-11-23 16:50:00', 'yyyy-mm-dd HH:MM:SS');
 % TimeEnd = datenum('2021-11-23 17:20:00', 'yyyy-mm-dd HH:MM:SS');
@@ -61,5 +61,11 @@ TimeEnd = datenum('2018-12-14 08:53:00', 'yyyy-mm-dd HH:MM:SS');
 
 % TimeStart = datenum('2022-12-19 21:48:00', 'yyyy-mm-dd HH:MM:SS');
 % TimeEnd = datenum('2022-12-19 21:58:00', 'yyyy-mm-dd HH:MM:SS');
+
+TimeStart = datenum('2021-11-08 11:30:00', 'yyyy-mm-dd HH:MM:SS');  %no mag
+TimeEnd = datenum('2021-11-08 11:55:00', 'yyyy-mm-dd HH:MM:SS');
+
+% TimeStart = datenum('2015-07-19 19:07:00', 'yyyy-mm-dd HH:MM:SS');
+% TimeEnd = datenum('2015-07-19 19:33:00', 'yyyy-mm-dd HH:MM:SS');
 
 MVN_main(TimeStart, TimeEnd);

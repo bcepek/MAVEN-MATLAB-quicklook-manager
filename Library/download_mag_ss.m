@@ -22,6 +22,10 @@ url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/mag/l2/' mvn_year '/
 web_page = webread(url);
 pattern = 'mvn_mag_l2_' + digitsPattern(7) + 'ss_' + mvn_year+mvn_month+mvn_day + '_v' + digitsPattern(2) + '_r' + digitsPattern(2) + '.sts';
 fname_ind = strfind(web_page, pattern);
+if isempty(fname_ind)
+    fname = -1;
+    return
+end
 fname = web_page(fname_ind(1):fname_ind(1)+40);
 
 websave([download_path, fname], [url, fname]);

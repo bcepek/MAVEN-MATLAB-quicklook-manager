@@ -137,9 +137,11 @@ filename_mag = find_mag_file(TimeStart);
 if(filename_mag == -1)
     disp("mag mat file not found. trying to download sts file from LASP SDC...")
     filename_mag_sts = download_mag_ss(TimeStart);
-    disp("mag sts file downloaded. Converting to mat...")
-    mag_sts2mat(filename_mag_sts)
-    filename_mag = find_mag_file(TimeStart);
+    if filename_mag_sts ~= -1
+        disp("mag sts file downloaded. Converting to mat...")
+        mag_sts2mat(filename_mag_sts)
+        filename_mag = find_mag_file(TimeStart);
+    end
 end
 if(filename_mag~=-1)
     products_mag = load (filename_mag);

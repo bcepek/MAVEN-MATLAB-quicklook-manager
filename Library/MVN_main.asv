@@ -136,9 +136,10 @@ end
 filename_mag = find_mag_file(TimeStart);
 if(filename_mag == -1)
     disp("mag mat file not found. trying to download sts file from LASP SDC...")
-    %download here !!!!!!!!!!!!!!!!!
+    filename_mag_sts = download_mag_ss(TimeStart);
+    
     disp("mag sts file downloaded. Converting to mat...")
-    %convert to mat here !!!!!!!!!!!!!!!!!!
+    mag_sts2mat(filename_mag_sts)
     filename_mag = find_mag_file(TimeStart);
 end
 if(filename_mag~=-1)
@@ -184,7 +185,12 @@ Ez = v_y_bulk.*Blx - v_x_bulk.*Bly;
 
 
 %% *************** ELECTRON DISTRIBUTION FUNCTIONS ******************%
-filename_svyspec = find_svyspec(TimeStart) ;
+filename_svyspec = find_svyspec(TimeStart);
+if filename_svyspec==-1
+    disp("mvn_swe_svyspec not found. Trying to download from LASP SDC...")
+    download_swe_svyspec(TimeStart);
+    filename_svyspec = find_svyspec(TimeStart);
+end
 if(filename_svyspec ~= -1)
     [epoch_svyspec,num_accum,counts,diff_en_fluxes,weight_factor,...
         geom_factor, g_engy, de_over_e, accum_time, energy,num_spec] = read_variables_svyspec(filename_svyspec, TimeStart, TimeEnd);
@@ -192,6 +198,11 @@ end
 %% --- SWIA ENERGY-TIME SPECTROGRAM AND PRESSURE --- %%
 %Root for SWIA moments data
 filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
+if filename_swia_mom==-1
+    disp("mvn_swi_svymom not found. Trying to download from LASP SDC...")
+    download_swi_svymom(TimeStart);
+    filename_swia_mom = find_CDF_file_swia_moments(TimeStart);
+end
 % Read moments variables
 if(length(filename_swia_mom) > 1)
     [epoch_swia,time_met_swia,time_unix_swia,atten_state_swia,telem_mode_swia,quality_flag_swia,...
@@ -204,6 +215,11 @@ end
 
 % Root for SWIA spectra data
 filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+if filename_swia_spec==-1
+    disp("mvn_swi_svyspec not found. Trying to download from LASP SDC...")
+    download_swi_svyspec(TimeStart);
+    filename_swia_spec = find_CDF_file_swia_spec(TimeStart);
+end
 
 % Read moments variables
 if(length(filename_swia_spec) > 1)
