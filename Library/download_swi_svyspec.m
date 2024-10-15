@@ -10,7 +10,7 @@ if(length(mvn_day)<2)
 end
 
 load("paths.mat", 'paths', 'slash');
-download_path = [paths.lpw_we12 slash mvn_year slash mvn_month slash];
+download_path = [paths.swi_onboardsvyspec slash mvn_year slash mvn_month slash];
 if ~exist(download_path, 'dir')
     mkdir(download_path)
 end
