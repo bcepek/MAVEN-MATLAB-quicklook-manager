@@ -1,4 +1,4 @@
-function filename = download_swi_svyspec(time)
+function filename = download_lpw_we12(time)
 mvn_year = num2str(year(time));
 mvn_month = num2str(month(time));
 if(length(mvn_month)<2)
@@ -10,15 +10,15 @@ if(length(mvn_day)<2)
 end
 
 load("paths.mat", 'paths', 'slash');
-download_path = [paths.lpw_we12 slash mvn_year slash mvn_month slash];
+download_path = [paths.swi_onboardsvyspec slash mvn_year slash mvn_month slash];
 if ~exist(download_path, 'dir')
     mkdir(download_path)
 end
 
-url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/swi/l2/' mvn_year '/' mvn_month '/'];
+url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/lpw/l2/' mvn_year '/' mvn_month '/'];
 web_page = webread(url);
 
-pattern = ['mvn_swi_l2_onboardsvyspec_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
+pattern = ['mvn_lpw_l2_we12_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
 fname_ind = strfind(web_page, pattern);
 if isempty(fname_ind)
     filename = -1;
