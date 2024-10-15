@@ -352,7 +352,7 @@ end
 
 %---BEGIN---plot 8 ---------------
 plotNumber = plotNumber + 1;
-if(filename_swia_mom ~= -1 && filename_swia_spec ~= -1)
+if(all(filename_swia_mom ~= -1) && all(filename_swia_spec ~= -1))
     [~, sub_handles(8)] = plot_proton_spectrogram_swia(plotNumber, bottomGap, plotHight, plotsGap, plotLeftGap, plotLength, FontSize, xticks, caxis_lims,...
         epoch_swia_spec,energy_spectra_swia, spectra_diff_en_fluxes_swia,density_swia,velocity_mso_swia,choose_ind_swia);
     xlim([TimeStart TimeEnd])
