@@ -1,5 +1,13 @@
 function filename = download_sta_d1(time)
 
+%server = "berkeley";
+server = "lasp";
+if server == "berkeley"
+    server_url = 'https://sprg.ssl.berkeley.edu/data/maven/data/sci/sta/l2/';
+elseif server == "lasp"
+    server_url = 'https://lasp.colorado.edu/maven/sdc/public/data/sci/sta/l2/';
+end
+
 mvn_year = num2str(year(time));
 mvn_month = num2str(month(time));
 if(length(mvn_month)<2)
