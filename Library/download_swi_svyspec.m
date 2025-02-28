@@ -1,4 +1,13 @@
 function filename = download_swi_svyspec(time)
+
+server = "berkeley";
+%server = "lasp";
+if server == "berkeley"
+    server_url = 'https://sprg.ssl.berkeley.edu/data/maven/data/sci/swi/l2/';
+elseif server == "lasp"
+    server_url = 'https://lasp.colorado.edu/maven/sdc/public/data/sci/swi/l2/';
+end
+
 mvn_year = num2str(year(time));
 mvn_month = num2str(month(time));
 if(length(mvn_month)<2)
@@ -15,8 +24,14 @@ if ~exist(download_path, 'dir')
     mkdir(download_path)
 end
 
-url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/swi/l2/' mvn_year '/' mvn_month '/'];
-web_page = webread(url);
+url = [server_url mvn_year '/' mvn_month '/'];
+try
+    web_page = webread(url);
+catch
+    filename = -1;
+    disp('swi_svyspec download unsuccessful')
+    return
+end
 
 pattern = ['mvn_swi_l2_onboardsvyspec_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
 fname_ind = strfind(web_page, pattern);
