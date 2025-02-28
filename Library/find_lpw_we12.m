@@ -23,7 +23,7 @@ for i = 1:length(month_filelist)
         break
     elseif i == length(month_filelist)
         isfound = false;
-        disp([datestr(cur_date) ' not found'])
+        disp(['lpw we12 data for ' datestr(cur_date) ' not found'])
         filename_svyspec = -1;
     end
 end
