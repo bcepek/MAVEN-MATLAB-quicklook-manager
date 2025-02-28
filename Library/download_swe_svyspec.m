@@ -16,7 +16,13 @@ if ~exist(download_path, 'dir')
 end
 
 url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/swe/l2/' mvn_year '/' mvn_month '/'];
-web_page = webread(url);
+try
+    web_page = webread(url);
+catch
+    filename = -1;
+    disp('swe_swyspec download unsuccessful')
+    return
+end
 
 pattern = ['mvn_swe_l2_svyspec_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
 fname_ind = strfind(web_page, pattern);
