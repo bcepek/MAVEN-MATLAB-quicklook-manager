@@ -58,7 +58,7 @@ grid on
 
 h = subplot(3,1,3);
 plot(epoch_d1_disp, angle_norm, 'linewidth', 1.5)
-datetick('x', 'MM:SS')
+datetick('x', 'HH:MM:SS')
 ylim([0 180])
 ylabel('angle with surface normal')
 pos = get(h, 'position');
