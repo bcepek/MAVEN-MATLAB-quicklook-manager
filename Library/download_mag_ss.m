@@ -19,7 +19,13 @@ if ~exist(download_path, 'dir')
 end
 
 url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/mag/l2/' mvn_year '/' mvn_month '/'];
-web_page = webread(url);
+try
+    web_page = webread(url);
+catch
+    fname = -1;
+    disp('Mag file download failed')
+    return
+end
 pattern = 'mvn_mag_l2_' + digitsPattern(7) + 'ss_' + mvn_year+mvn_month+mvn_day + '_v' + digitsPattern(2) + '_r' + digitsPattern(2) + '.sts';
 fname_ind = strfind(web_page, pattern);
 if isempty(fname_ind)
