@@ -1,4 +1,13 @@
 function filename = download_lpw_we12(time)
+
+server = "berkeley";
+%server = "lasp";
+if server == "berkeley"
+    server_url = 'https://sprg.ssl.berkeley.edu/data/maven/data/sci/lpw/l2/';
+elseif server == "lasp"
+    server_url = 'https://lasp.colorado.edu/maven/sdc/public/data/sci/lpw/l2/';
+end
+
 mvn_year = num2str(year(time));
 mvn_month = num2str(month(time));
 if(length(mvn_month)<2)
@@ -15,7 +24,7 @@ if ~exist(download_path, 'dir')
     mkdir(download_path)
 end
 
-url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/lpw/l2/' mvn_year '/' mvn_month '/'];
+url = [server_url, mvn_year, '/', mvn_month, '/'];
 web_page = webread(url);
 
 pattern = ['mvn_lpw_l2_we12_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
