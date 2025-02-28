@@ -1,7 +1,7 @@
 function filename = download_swe_svyspec(time)
 
-%server = "berkeley";
-server = "lasp";
+server = "berkeley";
+%server = "lasp";
 if server == "berkeley"
     server_url = 'https://sprg.ssl.berkeley.edu/data/maven/data/sci/swe/l2/';
 elseif server == "lasp"
