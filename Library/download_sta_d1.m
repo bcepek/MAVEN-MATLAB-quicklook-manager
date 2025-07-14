@@ -1,7 +1,7 @@
 function filename = download_sta_d1(time)
 
-%server = "berkeley";
-server = "lasp";
+server = "berkeley";
+%server = "lasp";
 if server == "berkeley"
     server_url = 'https://sprg.ssl.berkeley.edu/data/maven/data/sci/sta/l2/';
 elseif server == "lasp"
