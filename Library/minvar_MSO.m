@@ -130,7 +130,7 @@ hold off
 axis equal
 grid on
 hold on
-pos_sc_mso = mean([x y z]);
+pos_sc_mso = mean([x y z], 1);
 pos_sc_mso = max(max(B))*pos_sc_mso/norm(pos_sc_mso);
 meanB = mean(B);
 quiver3(meanB(1),meanB(2),meanB(3),pos_sc_mso(1),pos_sc_mso(2),pos_sc_mso(3))
