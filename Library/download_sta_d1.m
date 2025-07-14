@@ -24,7 +24,7 @@ if ~exist(download_path, 'dir')
     mkdir(download_path)
 end
 
-url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/sta/l2/' mvn_year '/' mvn_month '/'];
+url = [server_url mvn_year '/' mvn_month '/'];
 try
     web_page = webread(url);
 catch
