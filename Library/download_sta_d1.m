@@ -25,10 +25,21 @@ if ~exist(download_path, 'dir')
 end
 
 url = ['https://lasp.colorado.edu/maven/sdc/public/data/sci/sta/l2/' mvn_year '/' mvn_month '/'];
-web_page = webread(url);
+try
+    web_page = webread(url);
+catch
+    filename = -1;
+    disp('sta d1 download unsuccessful')
+    return
+end
 
 pattern = ['mvn_sta_l2_d1-32e4d16a8m_' mvn_year mvn_month mvn_day '_v'] + digitsPattern(2) + '_r' + digitsPattern(2) + '.cdf';
 fname_ind = strfind(web_page, pattern);
+if isempty(fname_ind)
+    disp('sta d1 download unsuccessful')
+    filename = -1;
+    return
+end
 fname = web_page(fname_ind(1):fname_ind(1)+44);
 websave([download_path, fname], [url, fname]);
 

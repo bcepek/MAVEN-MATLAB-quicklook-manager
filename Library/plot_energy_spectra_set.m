@@ -33,7 +33,7 @@ title('')
 
 subplot(1, 3, 3)
 for i = epoch_ind_start : epoch_ind_end
-    semilogx( log10(energy_d1(:,swp_ind_d1(i) + 1, 2, 6)),  log10(squeeze(eflux_d1_cleaned_sum(:, 6, i))) + ...
+    semilogx( energy_d1(:,swp_ind_d1(i) + 1, 2, 6),  log10(squeeze(eflux_d1_cleaned_sum(:, 6, i))) + ...
         (i - epoch_ind_start )* 1, 'r','LineWidth',1 );
     hold on
 end

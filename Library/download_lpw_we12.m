@@ -33,7 +33,7 @@ if isempty(fname_ind)
     filename = -1;
     return
 end
-fname = web_page(fname_ind(end):fname_ind(end)+45);
+fname = web_page(fname_ind(end):fname_ind(end)+35);
 websave([download_path, fname], [url, fname]);
 
 filename = [download_path, fname];

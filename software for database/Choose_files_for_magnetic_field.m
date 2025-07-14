@@ -1,6 +1,6 @@
 clear
-datefrom = '2022-12-19';
-dateto = '2022-12-19';
+datefrom = '2025-02-01';
+dateto = '2025-02-01';
 writepath = '/Users/sesh2112/data/Matlab_MAVEN/pre-calculated/MAG_SS';
 root = '/Users/sesh2112/data/Matlab_MAVEN/MAG/SS';
 

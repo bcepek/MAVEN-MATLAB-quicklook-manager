@@ -42,6 +42,9 @@ ylim([min(energy(v)), max(energy(v))])
 
 % Overlaying LPW electric field:
 lpw_fname = find_lpw_we12(epoch_svyspec(1));
+if (lpw_fname ==-1)
+    lpw_fname = download_lpw_we12(epoch_svyspec(1));
+end
 if(lpw_fname ~= -1)
     lpw_data = spdfcdfread(lpw_fname, 'variables', 'data');
     lpw_epoch = spdfcdfread(lpw_fname, 'variables', 'epoch');
